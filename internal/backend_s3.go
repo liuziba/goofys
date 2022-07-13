@@ -180,7 +180,7 @@ func (s *S3Backend) detectBucketLocationByHEAD() (err error, isAws bool) {
 	}
 
 	switch resp.StatusCode {
-	case 200:
+	case 200, 301:
 		// note that this only happen if the bucket is in us-east-1
 		if len(s.config.Profile) == 0 {
 			s.awsConfig.Credentials = credentials.AnonymousCredentials
